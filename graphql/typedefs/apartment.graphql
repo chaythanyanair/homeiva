@@ -27,12 +27,12 @@ input ApartmentCreateInput {
 }
 
 input ApartmentUpdateInput {
-  name: String!
-  rooms: Int!
-  address: String!
-  city: String!
-  state: String!
-  country: String!
-  zipCode: Int!
-  userId: ID!
+  name: String
+  rooms: Int
+  address: String
+  city: String
+  state: String
+  country: String
+  zipCode: Int
+  userId: ID
 }

@@ -30,7 +30,9 @@ const apartmentMutations = {
         },
         { new: true }
       );
-  
+      if (!updatedApartment) {
+        throw new Error('Cannot find apartment with given ID');
+      }
       return updatedApartment;
     },
   };

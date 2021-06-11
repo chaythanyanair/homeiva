@@ -23,5 +23,5 @@ type Mutation {
 
   # Apartments
   createApartment(apartment: ApartmentCreateInput!): Apartment!
-  updateApartment(id: ID!, apartment: ApartmentCreateInput!): Apartment!
+  updateApartment(id: ID!, apartment: ApartmentUpdateInput!): Apartment!
 }

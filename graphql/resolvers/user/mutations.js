@@ -13,7 +13,7 @@ const userMutations = {
         return new Error('Invalid zipcode, please use a US zipcode');
       }
       const existingUser = User.find({emailId: user.emailId});
-      if (existingUser) {
+      if (existingUser.length) {
         return new Error('User already exists');
       }
       user.password = bcrypt.hashSync(user.password, 3);
@@ -67,7 +67,6 @@ const userMutations = {
       const userId = auth._id;
       const apartment = await Apartment.findById(apartmentId);
       let updatedUser;
-      console.log(userId, apartment)
       if (apartment) {
         updatedUser = await User.findByIdAndUpdate(
           userId,

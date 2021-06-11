@@ -36,12 +36,12 @@ input UserCreateInput {
 }
 
 input UserUpdateInput {
-  firstName: String!
-  lastName: String!
-  apartmentId: ID!
-  address: String!
-  city: String!
-  state: String!
-  country: String!
-  zipCode: Int!
+  firstName: String
+  lastName: String
+  apartmentId: ID
+  address: String
+  city: String
+  state: String
+  country: String
+  zipCode: Int
 }

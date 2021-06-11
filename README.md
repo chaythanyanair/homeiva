@@ -61,6 +61,7 @@ Env variable name | Description | Example | Defaults |
 --- | --- | --- | --- |
 `MONGO_INITDB_ROOT_USERNAME` | MongoDB admin user name | `root` |
 `MONGO_INITDB_ROOT_PASSWORD` | MongoDB admin password | `root` |
+`MONGO_ROOT_DATABASE` | Mongo admin db name | `admin` | `admin` |
 `MONGO_USERNAME` | MongoDB username | `homeiva` |
 `MONGO_PASSWORD` | MongoDB password | `pass` |
 `MONGO_PORT` | MongoDB port | `27017` | `27017`
@@ -160,7 +161,10 @@ query {
 5. Update user
 ```
 mutation{
-  updateUser(id: "60c1a3264abd723054e0f568") {
+  updateUser(id: "60c360be88c64920607bf7ea", user: {
+    firstName: "New name"
+    lastName: "New last name"
+  }) {
     id
     firstName
     lastName
@@ -208,7 +212,9 @@ query {
 9. Update apartment
 ```
 mutation {
-  updateApartment(id: "60c1a3264abd723054e0f568") {
+  updateApartment(id: "60c361a8a8ecf521af2f3ffe", apartment: {
+    zipCode: 12345
+  }) {
     id
     name
   }
@@ -236,9 +242,21 @@ mutation {
     }
   }
 }
-
 ```
-12. Search apartments. Search can be done by either city, country, rooms.
+
+12. List all favorites
+```
+query {
+  users {
+    favorites {
+      name
+      address
+    }
+  }
+}
+```
+
+13. Search apartments. Search can be done by either city, country, rooms.
 ```
 query {
   searchApartment(city: "Houston") {
@@ -246,7 +264,7 @@ query {
   }
 }
 ```
-13. Search apartment by distance.
+14. Search apartment by distance.
 ```
 query {
   searchApartmentByDistance(zipcode: 12301, distance:0) {

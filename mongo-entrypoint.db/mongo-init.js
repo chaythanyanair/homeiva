@@ -1,5 +1,5 @@
-var rootUser = _getEnv('MONGO_ROOT_USERNAME');
-var rootPassword = _getEnv('MONGO_ROOT_PASSWORD');
+var rootUser = _getEnv('MONGO_INITDB_ROOT_USERNAME');
+var rootPassword = _getEnv('MONGO_INITDB_ROOT_PASSWORD');
 var user = _getEnv('MONGO_USERNAME');
 var password = _getEnv('MONGO_PASSWORD');
 var rootDb = _getEnv('MONGO_ROOT_DATABASE');
