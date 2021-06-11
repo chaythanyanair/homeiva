@@ -40,8 +40,48 @@ $ npm start
 ```
 If you havent changed the `.env` file, the API server should be up and running in port `9000`.
 
-The GraphQL play ground should be available in http://localhost:9000.
+The GraphQL play ground should be available in http://localhost:9000/graphql.
 
+
+## Folder Structure
+
+The folder structure has been designed in a scalable way.
+
+```
+|- /config    - config files
+  |- environment - environment specifi configurations
+|- /db   - Database related files (used by `package.json`)
+  |- index.js - MongoDB connection handling
+  |- /models - DB models
+|- /graphql - GraphQL application
+  |- /resolvers - GraphQL resolvers
+  |- /typedefs - GraphQL typedefinitions
+|- /mongo-entrypoint.db - Mongo container initialization scripts
+|- /utilities - Application utilities
+|- app.js - Express and appolo server initialization
+|- index.js - DB connection and server startup
+|- /tests        - tests written in [ava](https://github.com/avajs/ava) framework
+```
+
+
+## Environment Variables
+
+All configurations are fetched from environment variables. Application related environment variables should be added in `.env` file, and mongo container related environment variables should be added in `docker-compose.yml`.
+
+Please find the details of all the environment variables used in this application:
+
+Env variable name | Description | Example | Defaults |
+--- | --- | --- | --- |
+`MONGO_INITDB_ROOT_USERNAME` | MongoDB admin user name | `root` |
+`MONGO_INITDB_ROOT_PASSWORD` | MongoDB admin password | `root` |
+`MONGO_USERNAME` | MongoDB username | `homeiva` |
+`MONGO_PASSWORD` | MongoDB password | `pass` |
+`MONGO_PORT` | MongoDB port | `27017` | `27017`
+`MONGO_HOSTNAME` | MongoDB host name | `localhost` | `localhost` |
+`MONGO_DB` | MongoDB database name | `homeiva` |
+`NODE_ENV` | Node environment | `development` | `development` |
+`PORT` | Application server port number | `9000` | `9000` |
+`JWT_SECRET` | JWT secret for signing | `supersecret` | 
 
 ## Query Examples
 
@@ -216,44 +256,5 @@ The authorization header can be passsed in the following format:
 }
 ```
 
-## Folder Structure
-
-The fol;der structure has been designed in a scalable way.
-
-```
-|- /config    - config files
-  |- environment - environment specifi configurations
-|- /db   - Database related files (used by `package.json`)
-  |- index.js - MongoDB connection handling
-  |- /models - DB models
-|- /graphql - GraphQL application
-  |- /resolvers - GraphQL resolvers
-  |- /typedefs - GraphQL typedefinitions
-|- /mongo-entrypoint.db - Mongo container initialization scripts
-|- /utilities - Application utilities
-|- app.js - Express and appolo server initialization
-|- index.js - DB connection and server startup
-|- /tests        - tests written in [ava](https://github.com/avajs/ava) framework
-```
-
-
-## Environment Variables
-
-All configurations are fetched from environment variables. Application related environment variables should be added in `.env` file, and mongo container related environment variables should be added in `docker-compose.yml`.
-
-Please find the details of all the environment variables used in this application:
-
-Env variable name | Description | Example | Defaults |
---- | --- | --- | --- |
-`MONGO_INITDB_ROOT_USERNAME` | MongoDB admin user name | `root` |
-`MONGO_INITDB_ROOT_PASSWORD` | MongoDB admin password | `root` |
-`MONGO_USERNAME` | MongoDB username | `homeiva` |
-`MONGO_PASSWORD` | MongoDB password | `pass` |
-`MONGO_PORT` | MongoDB port | `27017` | `27017`
-`MONGO_HOSTNAME` | MongoDB host name | `localhost` | `localhost` |
-`MONGO_DB` | MongoDB database name | `homeiva` |
-`NODE_ENV` | Node environment | `development` | `development` |
-`PORT` | Application server port number | `9000` | `9000` |
-`JWT_SECRET` | JWT secret for signing | `supersecret` | 
 
 
