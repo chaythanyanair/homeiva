@@ -14,7 +14,6 @@ For designing this API server we have used the following:
 
 - [Node.js](https://nodejs.org) v10.0.0+
 - [Docker](https://www.docker.com/)
-
 ## Getting Started
 
 Install the required npm packages using the following npm command
@@ -23,7 +22,7 @@ Install the required npm packages using the following npm command
 $ npm install
 ```
 
-MongoDB is used as the database for storing user and apartment informations. Please ensure that the required environment variables are filled in the docker-compose file before starting the mongo container. Definitions for environement variables are provided in the [section].
+MongoDB is used as the database for storing user and apartment informations. Please ensure that the required environment variables are filled in the docker-compose file before starting the mongo container. Definitions for environement variables are provided in the [section](#Environment-Variables).
 
 Start mongo container using the following command.
 
@@ -42,29 +41,17 @@ If you havent changed the `.env` file, the API server should be up and running i
 
 The GraphQL play ground should be available in http://localhost:9000/graphql.
 
+### Authorization
 
-## Folder Structure
-
-The folder structure has been designed in a scalable way.
+The authorization header can be passsed in the following format:
 
 ```
-|- /config    - config files
-  |- environment - environment specifi configurations
-|- /db   - Database related files (used by `package.json`)
-  |- index.js - MongoDB connection handling
-  |- /models - DB models
-|- /graphql - GraphQL application
-  |- /resolvers - GraphQL resolvers
-  |- /typedefs - GraphQL typedefinitions
-|- /mongo-entrypoint.db - Mongo container initialization scripts
-|- /utilities - Application utilities
-|- app.js - Express and appolo server initialization
-|- index.js - DB connection and server startup
-|- /tests        - tests written in [ava](https://github.com/avajs/ava) framework
+{
+  "Authorization": "some very long string"
+}
 ```
 
-
-## Environment Variables
+### Environment Variables
 
 All configurations are fetched from environment variables. Application related environment variables should be added in `.env` file, and mongo container related environment variables should be added in `docker-compose.yml`.
 
@@ -83,7 +70,32 @@ Env variable name | Description | Example | Defaults |
 `PORT` | Application server port number | `9000` | `9000` |
 `JWT_SECRET` | JWT secret for signing | `supersecret` | 
 
-## Query Examples
+### Folder Structure
+
+The folder structure has been designed in a scalable way.
+
+```
+|- /config    - config files
+  |- environment - environment specifi configurations
+|- /db   - Database related files (used by `package.json`)
+  |- index.js - MongoDB connection handling
+  |- /models - DB models
+|- /graphql - GraphQL application
+  |- /resolvers - GraphQL resolvers
+  |- /typedefs - GraphQL typedefinitions
+|- /mongo-entrypoint.db - Mongo container initialization scripts
+|- /utilities - Application utilities
+|- app.js - Express and appolo server initialization
+|- index.js - DB connection and server startup
+|- /tests        - tests written in [ava](https://github.com/avajs/ava) framework
+```
+### Geo Location
+
+For the purpose of implimentimenting apartment search using zipcode, [zipcodes](https://www.npmjs.com/package/zipcodes) npm package has been used. The package works by scanning a local file which contains zip codes, address information, lat, long and other details. The currently used file has been downloaded from [here](http://federalgovernmentzipcodes.us/download.html).
+
+The zipcode csv file is available in this repository for easy access.
+
+### Query Examples
 
 1. User Sign up
 ```
@@ -245,16 +257,6 @@ query {
 
 The overview of the schema for each type can be found in the graphql playground itself.
 
-
-### Authorization
-
-The authorization header can be passsed in the following format:
-
-```
-{
-  "Authorization": "some very long string"
-}
-```
 
 
 

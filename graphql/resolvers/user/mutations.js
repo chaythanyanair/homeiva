@@ -12,6 +12,10 @@ const userMutations = {
       if (!zipCode) {
         return new Error('Invalid zipcode, please use a US zipcode');
       }
+      const existingUser = User.find({emailId: user.emailId});
+      if (existingUser) {
+        return new Error('User already exists');
+      }
       user.password = bcrypt.hashSync(user.password, 3);
       const newUser = new User(user);
       await newUser.save();
