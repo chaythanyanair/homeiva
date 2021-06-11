@@ -1,0 +1,47 @@
+
+# Types
+type User implements Timestamps { 
+  id: ID!
+  firstName: String!
+  lastName: String!
+  emailId: String!
+  password: String
+  address: String!
+  city: String!
+  state: String!
+  country: String!
+  zipCode: Int!
+  favorites: [Apartment]
+  
+# Interface
+  createdAt: Date!
+  updatedAt: Date!
+}
+
+type AuthPayLoad {
+  token: String!
+}
+
+# Inputs
+input UserCreateInput {
+  firstName: String!
+  lastName: String!
+  emailId: String!
+  password: String!
+  address: String!
+  city: String!
+  state: String!
+  country: String!
+  zipCode: Int!
+}
+
+input UserUpdateInput {
+  firstName: String!
+  lastName: String!
+  apartmentId: ID!
+  address: String!
+  city: String!
+  state: String!
+  country: String!
+  zipCode: Int!
+}

@@ -1,0 +1,38 @@
+# Types
+type Apartment implements Timestamps { 
+  id: ID!
+  name: String!
+  rooms: Int!
+  address: String!
+  city: String!
+  state: String!
+  country: String!
+  zipCode: Int!
+  userId: ID!
+  
+  # Interface
+  createdAt: Date!
+  updatedAt: Date!
+}
+
+# Inputs
+input ApartmentCreateInput {
+  name: String!
+  rooms: Int!
+  address: String!
+  city: String!
+  state: String!
+  country: String!
+  zipCode: Int!
+}
+
+input ApartmentUpdateInput {
+  name: String!
+  rooms: Int!
+  address: String!
+  city: String!
+  state: String!
+  country: String!
+  zipCode: Int!
+  userId: ID!
+}

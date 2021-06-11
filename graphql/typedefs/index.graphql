@@ -1,0 +1,27 @@
+# Custom Scalars
+scalar Date
+
+type Query {
+  # Users
+  users: [User]
+  user(id: ID!): User
+
+  # Apartments
+  apartments: [Apartment]
+  apartment(id: ID!): Apartment
+  searchApartment(city: String, country: String, rooms: Int): [Apartment]
+  searchApartmentByDistance(zipcode: Int, distance: Int): [Apartment]
+}
+
+type Mutation {
+  # Users
+  signUpUser(user: UserCreateInput!): AuthPayLoad!
+  loginUser(email: String!, password: String!): AuthPayLoad!
+  updateUser(id: ID!, user: UserUpdateInput!): User!
+  addApartmentAsFavorite(apartmentId: ID!): User!
+  removeApartmentFromFavorite(apartmentId: ID!): User!
+
+  # Apartments
+  createApartment(apartment: ApartmentCreateInput!): Apartment!
+  updateApartment(id: ID!, apartment: ApartmentCreateInput!): Apartment!
+}
